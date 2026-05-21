@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portal de notícias da cidade de Almenara - MG. Cobertura de política, esporte, cultura e entretenimento." />
+    <meta name="keywords" content="Almenara, notícias, Jequitinhonha, Minas Gerais" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <title>Portal de Notícias de Almenara</title>
+</head>
+<body>
+    <a href="#principal" class="skip-link">Ir para o conteúdo principal</a>
+
+    <header id="area-cabecalho">
+        <div id="area-logo">
+            <h1>Portal<span class="branco">Almenara</span></h1>
+        </div>
+
+        <div class="menu-mobile" onclick="toggleMenu()" aria-label="Abrir menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav id="menu">
+            <div class="menu-links">
+                <a href="index.html">Home</a>
+                <a href="politica.html?id=1">Política</a>
+                <a href="esporte.html?id=2">Esporte</a>
+                <a href="cultura.html?id=3">Cultura</a>
+                <a href="entretenimento.html?id=4">Entretenimento</a>
+            </div>
+
+            <div class="area-usuario">
+                <div class="pesquisa-compacta">
+                    <button class="lupa" aria-label="Abrir pesquisa">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <form id="formPesquisa" action="pesquisa.html" method="GET" class="form-pesquisa">
+                        <input type="text" name="q" placeholder="Pesquisar..." aria-label="Pesquisar notícias"/>
+                        <button type="submit" class="botao-pesquisa"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="usuario-icones">
+                    <div id="usuario-deslogado">
+                        <a href="login.html" title="Entrar"><i class="fa fa-sign-in-alt"></i></a>
+                        <a href="cadastro.html" title="Cadastrar"><i class="fa fa-user-plus"></i></a>
+                    </div>
+                    
+                    <div id="usuario-logado" style="display: none;">
+                        <div class="dropdown-perfil">
+                            <button class="botao-perfil" aria-label="Menu do usuário" aria-haspopup="true" aria-expanded="false">
+                                <span id="nome-usuario"></span>
+                                <i class="fas fa-user-circle"></i>
+                            </button>
+                            <div class="dropdown-conteudo">
+                                <div class="favoritos-header">
+                                    <h4><i class="fas fa-user"></i> Olá, <span id="dropdown-nome-usuario-saudacao"></span>!</h4> 
+                                </div>
+                                <div class="info-pessoal-dropdown">
+                                    <p><i class="fas fa-envelope"></i> E-mail: <span id="dropdown-email-usuario"></span></p>
+                                    <p><i class="fas fa-id-card"></i> <a href="perfil.html">Ver Perfil Completo</a></p>
+                                </div>
+                                
+                                <div class="favoritos-header">
+                                    <h4><i class="fas fa-heart"></i> Meus Favoritos</h4>
+                                </div>
+                                <div class="favoritos-container">
+                                </div>
+                                <div class="dropdown-footer">
+                                    <button id="sair-btn" class="botao-sair">
+                                        <i class="fas fa-sign-out-alt"></i> Sair
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+   <section id="carousel-section" class="carousel-container">
+    <div class="carousel-slide">
+    <button class="favorito-carrossel" aria-label="Favoritar Morro do Cruzeiro" data-titulo="Morro do Cruzeiro">
+        <i class="far fa-heart"></i>
+    </button>
+    <a href="paginas/morro-do-cruzeiro.html" aria-label="Ver localização Morro do Cruzeiro no mapa">
+        <img src="img/cruzeiro.jpg" alt="Foto do Morro do Cruzeiro em Almenara, com a estátua e vista panorâmica">
+        <div class="carousel-caption">
+            <h3>Morro do Cruzeiro</h3>
+            <p>O ponto mais alto de Almenara, com vista panorâmica da cidade.</p>
+        </div>
+    </a>
+</div>
+        <div class="carousel-slide">
+            <button class="favorito-carrossel" aria-label="Favoritar Rio Jequitinhonha" data-titulo="Rio Jequitinhonha">
+        <i class="far fa-heart"></i>
+    </button>
+            <a href="paginas/riojequitinhonha.html" aria-label="Ver localização Rio Jequitinhonha no mapa">
+                <img src="img/riojequitinhonha.jpeg" alt="Foto do Rio Jequitinhonha em Almenara">
+                <div class="carousel-caption">
+                    <h3>Rio Jequitinhonha</h3>
+                    <p>A beleza natural e importância histórica de Almenara.</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="carousel-slide">
+            <button class="favorito-carrossel" aria-label="Favoritar Igreja Matriz" data-titulo="Catedral São João Batista">
+        <i class="far fa-heart"></i>
+    </button>
+            <a href="paginas/igreja.html" aria-label="Ver localização Igreja Matriz no mapa">
+                <img src="img/igreja.jpg" alt="Foto da Igreja Matriz de Almenara">
+                <div class="carousel-caption">
+                    <h3>Catedral São João Batista</h3>
+                    <p>Marco histórico e religioso da cidade.</p>
+                </div>
+            </a>
+        </div>
+
+        <button class="carousel-button prev" aria-label="Slide anterior">&#10094;</button>
+        <button class="carousel-button next" aria-label="Próximo slide">&#10095;</button>
+
+        <div class="carousel-dots">
+            <span class="dot active" data-slide="0" aria-label="Ir para slide 1"></span>
+            <span class="dot" data-slide="1" aria-label="Ir para slide 2"></span>
+            <span class="dot" data-slide="2" aria-label="Ir para slide 3"></span>
+            </div>
+    </div>
+</section>
+    <main id="principal">
+        <section id="area-postagens">
+            <div class="postagem">
+                <div class="card">
+                    <h2>Conheça Almenara:</h2>
+                    <span class="data-postagem">Postada em 10 de março de 2025</span>
+                    <img src="img/foto-almenara.png" alt="Vista aérea da cidade de Almenara, mostrando o Rio Jequitinhonha e áreas urbanas" />
+                    <p>Almenara é um município brasileiro no interior do estado de Minas Gerais...</p>
+                    <a href="https://pt.wikipedia.org/wiki/Almenara" target="_blank">Leia mais</a>
+                    <button class="favorito-btn" aria-label="Favoritar Conheça Almenara" data-titulo="Conheça Almenara">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="postagem">
+                <div class="card">
+                    <h2>Sua História:</h2>
+                    <span class="data-postagem">Postada em 10 de março de 2025</span>
+                    <img src="img/Almenara.png" alt="Imagem antiga de Almenara mostrando construções históricas" />
+                    <p>A origem de Almenara remonta ao ano de 1811...</p>
+                    <a href="https://pt.wikipedia.org/wiki/Almenara" target="_blank">Leia mais</a>
+                    <button class="favorito-btn" aria-label="Favoritar Sua História" data-titulo="Sua História">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div id="area-lateral">
+            <div class="conteudo-lateral">
+                <h3>Postagens recentes:</h3>
+                <div class="postagem-lateral">
+                    <p>Durante muito tempo Almenara teve a maior praia fluvial do Brasil...</p>
+                    <a href="entretenimento.html?id=4" class="leia-mais">Leia mais</a>
+                </div>
+                <div class="postagem-lateral">
+                    <p>A região vive essencialmente da pecuária, artesanato e terceiros...</p>
+                    <a href="cultura.html?id=3" class="leia-mais">Leia mais</a>
+                </div>
+            </div>
+
+            <div class="conteudo-lateral">
+                <h3>Categorias</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="politica.html?id=1">Política</a></li>
+                    <li><a href="esporte.html?id=2">Esporte</a></li>
+                    <li><a href="cultura.html?id=3">Cultura</a></li>
+                    <li><a href="entretenimento.html?id=4">Entretenimento</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer id="rodape">
+        <header>
+            <h2>Sobre</h2>
+            <button id="botao-toggle" aria-label="Expandir ou recolher rodapé">
+                <i class="fa fa-chevron-up"></i>
+            </button>
+        </header>
+
+        <div id="conteudo-rodape">
+            <div class="container-sobre">
+                <div class="coluna esquerda">
+                    <p>Este site é um projeto acadêmico desenvolvido no curso de Ciência da Computação, com o propósito de criar um portal de notícias dedicado à minha cidade natal, Almenara - MG. Desenvolvido com HTML, CSS e JavaScript, o portal apresenta notícias reais organizadas por categorias como política, esportes, cultura e entretenimento. O foco do projeto está na estruturação visual, na navegação acessível e na apresentação clara e informativa dos conteúdos, valorizando a identidade local e os acontecimentos do Vale do Jequitinhonha..</p>
+                    <div class="redes-sociais">
+                        <span class="texto-redes">Redes Sociais:</span>
+                        <a href="https://github.com/leticiamoreiraa" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/lettymoreiraa/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="coluna direita">
+                    <h3>Autoria</h3>
+                    <img src="img/fotoleticia.jpeg" alt="fotoleticia" class="foto-autora" />
+                    <p><strong>Aluna:</strong> Letícia Sousa Moreira <br />
+                        <strong>Curso:</strong> Ciência da Computação<br />
+                        <strong>Turma:</strong> Manhã</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menuNav = document.getElementById("menu");
+            if (menuNav) {
+                menuNav.classList.toggle("aberto");
+                const menuMobileBtn = document.querySelector('.menu-mobile');
+                if (menuMobileBtn) {
+                    const menuIcon = menuMobileBtn.querySelector('i');
+                    menuIcon.classList.toggle('fa-bars');
+                    menuIcon.classList.toggle('fa-times');
+                }
+            }
+        }
+
+        function setupPesquisa() {
+            const lupaButton = document.querySelector('.lupa');
+            const searchForm = document.getElementById('formPesquisa'); 
+
+            if (lupaButton && searchForm) {
+                lupaButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    const isExpanded = searchForm.classList.contains('expandido');
+                    document.querySelectorAll('.form-pesquisa').forEach(form => {
+                        if (form !== searchForm) {
+                            form.classList.remove('expandido');
+                        }
+                    });
+                    if (!isExpanded) {
+                        searchForm.classList.add('expandido');
+                        searchForm.querySelector('input[type="text"]').focus();
+                    } else {
+                        searchForm.classList.remove('expandido');
+                    }
+                });
+                document.addEventListener('click', function(event) {
+                    const isClickInsideSearchArea = lupaButton.contains(event.target) || searchForm.contains(event.target);
+                    if (!isClickInsideSearchArea && searchForm.classList.contains('expandido')) {
+                        searchForm.classList.remove('expandido');
+                    }
+                });
+                searchForm.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && searchForm.classList.contains('expandido')) {
+                        searchForm.classList.remove('expandido');
+                    }
+                });
+            }
+        }
+
+        function setupRodape() {
+            const rodape = document.getElementById('rodape');
+            const botaoToggle = document.getElementById('botao-toggle');
+            
+            if (rodape && botaoToggle) {
+                const iconeRodape = botaoToggle.querySelector('i');
+                botaoToggle.addEventListener('click', () => {
+                    rodape.classList.toggle('expanded');
+                    if (iconeRodape) {
+                        iconeRodape.classList.toggle('fa-chevron-up');
+                        iconeRodape.classList.toggle('fa-chevron-down');
+                    }
+                    botaoToggle.classList.toggle('rotated');
+                });
+            }
+        }
+
+        function setupCarrossel() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            let currentSlide = 0;
+            let slideInterval;
+
+            if (slides.length === 0) return;
+
+            function showSlide(index) {
+                if (index >= slides.length) {
+                    currentSlide = 0;
+                } else if (index < 0) {
+                    currentSlide = slides.length - 1;
+                } else {
+                    currentSlide = index;
+                }
+
+                slides.forEach((slide, i) => {
+                    slide.style.display = 'none'; 
+                    dots[i]?.classList.remove('active'); 
+                });
+
+                slides[currentSlide].style.display = 'block'; 
+                dots[currentSlide]?.classList.add('active'); 
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', prevSlide);
+                nextButton.addEventListener('click', nextSlide);
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                    resetInterval(); 
+                });
+            });
+
+            function startInterval() {
+                slideInterval = setInterval(nextSlide, 5000); 
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            showSlide(currentSlide);
+            startInterval();
+        }
+
+        function setupFavoritos() {
+            const favoritoBtns = document.querySelectorAll('.favorito-btn, .favorito-carrossel');
+            
+            let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            
+            favoritoBtns.forEach(btn => {
+                let identificador = btn.getAttribute('data-titulo'); 
+                
+                if (!identificador) { 
+                    if (btn.classList.contains('favorito-carrossel')) {
+                        const slide = btn.closest('.carousel-slide');
+                        identificador = slide?.querySelector('.carousel-caption h3')?.textContent?.trim();
+                    } else if (btn.classList.contains('favorito-btn')) {
+                        const card = btn.closest('.card');
+                        identificador = card?.querySelector('h2')?.textContent?.trim();
+                    }
+                }
+                
+                if (identificador) {
+                    identificador = identificador.replace(/:$/, '').trim(); 
+                }
+
+                if (identificador && favoritos.includes(identificador)) {
+                    btn.classList.add('favoritado');
+                    btn.querySelector('i')?.classList.replace('far', 'fas');
+                } else {
+                    btn.classList.remove('favoritado'); 
+                    btn.querySelector('i')?.classList.replace('fas', 'far');
+                }
+            });
+            
+            favoritoBtns.forEach(btn => {
+                btn.addEventListener('click', function(event) {
+                    event.stopPropagation(); 
+                    let identificador = this.getAttribute('data-titulo'); 
+
+                    if (!identificador) { 
+                        if (this.classList.contains('favorito-carrossel')) {
+                            const slide = this.closest('.carousel-slide');
+                            identificador = slide?.querySelector('.carousel-caption h3')?.textContent?.trim();
+                        } else if (this.classList.contains('favorito-btn')) {
+                            const card = this.closest('.card');
+                            identificador = card?.querySelector('h2')?.textContent?.trim();
+                        }
+                    }
+
+                    if (identificador) {
+                        identificador = identificador.replace(/:$/, '').trim();
+                    }
+                    
+                    if (!identificador) {
+                        return; 
+                    }
+
+                    const icone = this.querySelector('i');
+                    
+                    if (this.classList.contains('favoritado')) {
+                        this.classList.remove('favoritado');
+                        icone?.classList.replace('fas', 'far');
+                        favoritos = favoritos.filter(item => item !== identificador);
+                    } else {
+                        this.classList.add('favoritado');
+                        icone?.classList.replace('far', 'fas');
+                        favoritos.push(identificador);
+                    }
+                    
+                    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                    carregarFavoritosDropdown(); 
+                });
+            });
+        } 
+
+        function carregarFavoritosDropdown() {
+            const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+            const container = document.querySelector('.favoritos-container');
+            
+            if (!container) {
+                return; 
+            }
+
+            container.innerHTML = ''; 
+            
+            if (favoritos.length === 0) {
+                container.innerHTML = '<div class="favoritos-vazios">Nenhum item favoritado ainda</div>';
+            } else {
+                favoritos.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'favorito-item-dropdown'; 
+                    div.innerHTML = `
+                        <span>${item}</span>
+                        <button class="remover-favorito" data-titulo="${item}" title="Remover dos favoritos">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    container.appendChild(div);
+                });
+                
+                document.querySelectorAll('.remover-favorito').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation(); 
+                        const titulo = this.getAttribute('data-titulo');
+                        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+                        favoritos = favoritos.filter(item => item !== titulo);
+                        localStorage.setItem('favoritos', JSON.stringify(favoritos));
+                        
+                        carregarFavoritosDropdown(); 
+                        setupFavoritos(); 
+                    });
+                });
+            }
+        }
+
+        function atualizarEstadoUsuario() {
+            const usuarioLogadoString = localStorage.getItem('usuarioLogado');
+            const areaDeslogado = document.getElementById('usuario-deslogado');
+            const areaLogado = document.getElementById('usuario-logado');
+            
+            const nomeUsuarioSpan = document.getElementById('nome-usuario');
+            const dropdownNomeSaudacao = document.getElementById('dropdown-nome-usuario-saudacao');
+            const dropdownEmailUsuario = document.getElementById('dropdown-email-usuario'); // NOVO: Elemento para o e-mail no dropdown
+
+            const perfilNome = document.getElementById('perfil-nome');
+            const perfilEmail = document.getElementById('perfil-email');
+            
+            if (usuarioLogadoString) {
+                try {
+                    const usuario = JSON.parse(usuarioLogadoString);
+                    
+                    if (areaDeslogado) areaDeslogado.style.display = 'none';
+                    if (areaLogado) areaLogado.style.display = 'block';
+                    
+                    if (nomeUsuarioSpan) nomeUsuarioSpan.textContent = usuario.nome;
+                    if (dropdownNomeSaudacao) dropdownNomeSaudacao.textContent = usuario.nome;
+                    if (dropdownEmailUsuario) dropdownEmailUsuario.textContent = usuario.email; 
+                    
+                    if (perfilNome) perfilNome.textContent = usuario.nome;
+                    if (perfilEmail) perfilEmail.textContent = usuario.email;
+
+                    carregarFavoritosDropdown();
+                } catch (e) {
+                    localStorage.removeItem('usuarioLogado'); 
+                    if (areaDeslogado) areaDeslogado.style.display = 'flex';
+                    if (areaLogado) areaLogado.style.display = 'none';
+                }
+            } else {
+                if (areaDeslogado) areaDeslogado.style.display = 'flex';
+                if (areaLogado) areaLogado.style.display = 'none';
+                
+                if (window.location.pathname.includes('perfil.html')) {
+                    window.location.href = 'login.html'; 
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const sairBtn = document.getElementById('sair-btn');
+            if (sairBtn) {
+                sairBtn.addEventListener('click', function() {
+                    localStorage.removeItem('usuarioLogado');
+                    localStorage.removeItem('favoritos'); 
+                    window.location.href = 'index.html'; 
+                });
+            }
+
+            setupPesquisa();
+            setupRodape();
+            setupCarrossel(); 
+            atualizarEstadoUsuario(); 
+            setupFavoritos(); 
+            carregarFavoritosDropdown(); 
+
+            document.addEventListener('click', function(event) {
+                const dropdownPerfil = document.querySelector('.dropdown-perfil');
+                const dropdownConteudo = document.querySelector('.dropdown-conteudo');
+
+                if (dropdownPerfil && dropdownConteudo) {
+                    if (!dropdownPerfil.contains(event.target)) {
+                        dropdownConteudo.style.display = 'none';
+                        const botaoPerfil = dropdownPerfil.querySelector('.botao-perfil');
+                        if (botaoPerfil) {
+                            botaoPerfil.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }
+            });
+
+            const botaoPerfil = document.querySelector('.botao-perfil');
+            const dropdownConteudo = document.querySelector('.dropdown-conteudo');
+            if (botaoPerfil && dropdownConteudo) {
+                botaoPerfil.addEventListener('click', function(event) {
+                    event.stopPropagation(); 
+                    dropdownConteudo.style.display = dropdownConteudo.style.display === 'block' ? 'none' : 'block';
+                    this.setAttribute('aria-expanded', dropdownConteudo.style.display === 'block');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

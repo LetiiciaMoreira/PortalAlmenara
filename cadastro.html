@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Portal Almenara</title>
+    <link rel="stylesheet" href="css/styles.css"> 
+    <style>
+
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container-cadastro {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            background-color: white;
+        }
+
+        .card-header {
+            background-color: #f4b400;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            padding: 15px 20px;
+            text-align: center;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-cadastro {
+            width: 100%;
+            padding: 10px;
+            background-color: #f4b400;
+            border-color: #f4b400;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-cadastro:hover {
+            background-color: #e0a800;
+            border-color: #e0a800;
+        }
+
+        .link-login {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .link-login a {
+            color: #f4b400;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .link-login a:hover {
+            text-decoration: underline;
+            color: #e0a800;
+        }
+
+        .mensagem-sucesso, .mensagem-erro {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .mensagem-sucesso {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .mensagem-erro {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-cadastro">
+        <div class="card-header">
+            <h3>Cadastre-se</h3>
+        </div>
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="emailCadastro">E-mail:</label>
+                <input type="email" id="emailCadastro" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="senhaCadastro">Senha:</label>
+                <input type="password" id="senhaCadastro" name="senha" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmarSenha">Confirmar Senha:</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" class="form-control" required>
+            </div>
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+            <p class="link-login">Já tem conta? <a href="login.html">Faça login aqui</a></p>
+            <div id="mensagemCadastro" class="mensagem-sucesso" style="display: none;"></div>
+            <div id="erroCadastro" class="mensagem-erro" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+            console.log("1. Evento de submit disparado.");
+            event.preventDefault();
+
+            const nomeInput = document.getElementById('nome');
+            const emailInput = document.getElementById('emailCadastro');
+            const senhaInput = document.getElementById('senhaCadastro');
+            const confirmarSenhaInput = document.getElementById('confirmarSenha');
+            const mensagemCadastro = document.getElementById('mensagemCadastro');
+            const erroCadastro = document.getElementById('erroCadastro');
+
+            console.log("2. Elementos DOM obtidos:", { nomeInput, emailInput, senhaInput, confirmarSenhaInput, mensagemCadastro, erroCadastro });
+
+            if (!nomeInput || !emailInput || !senhaInput || !confirmarSenhaInput || !mensagemCadastro || !erroCadastro) {
+                console.error("ERRO: Um ou mais elementos do formulário não foram encontrados. Verifique os IDs no HTML.");
+                if (erroCadastro) {
+                    erroCadastro.textContent = "Erro interno: Falha ao carregar o formulário. Contate o suporte.";
+                    erroCadastro.style.display = 'block';
+                }
+                return;
+            }
+
+            const nome = nomeInput.value;
+            const email = emailInput.value;
+            const senha = senhaInput.value;
+            const confirmarSenha = confirmarSenhaInput.value;
+
+            console.log("3. Valores dos campos:", { nome, email, senha, confirmarSenha });
+
+            mensagemCadastro.style.display = 'none';
+            erroCadastro.style.display = 'none';
+
+            if (senha !== confirmarSenha) {
+                erroCadastro.textContent = 'As senhas não coincidem.';
+                erroCadastro.style.display = 'block';
+                console.log("4. Validação falhou: Senhas não coincidem.");
+                return;
+            }
+
+            if (localStorage.getItem(email)) {
+                erroCadastro.textContent = 'Este e-mail já está cadastrado.';
+                erroCadastro.style.display = 'block';
+                console.log("4. Validação falhou: E-mail já cadastrado.");
+                return;
+            }
+
+            console.log("5. Validações passadas. Preparando para salvar...");
+            const novoUsuario = {
+                nome: nome,
+                email: email,
+                senha: senha 
+            };
+
+            try {
+                localStorage.setItem(email, JSON.stringify(novoUsuario));
+                console.log("6. Usuário salvo no localStorage com chave:", email);
+
+                localStorage.setItem('usuarioLogado', JSON.stringify(novoUsuario)); 
+                console.log("7. Chave 'usuarioLogado' definida como:", JSON.stringify(novoUsuario));
+
+                mensagemCadastro.textContent = 'Cadastro realizado com sucesso! Redirecionando para o perfil...';
+                mensagemCadastro.style.display = 'block';
+                console.log("8. Mensagem de sucesso exibida. Redirecionando em 2 segundos...");
+
+                setTimeout(() => {
+                    console.log("9. Redirecionando para perfil.html");
+                    window.location.href = 'perfil.html'; 
+                }, 2000);
+
+            } catch (e) {
+                console.error("ERRO: Falha ao salvar no localStorage ou ao redirecionar.", e);
+                erroCadastro.textContent = "Erro ao processar cadastro. Tente novamente.";
+                erroCadastro.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

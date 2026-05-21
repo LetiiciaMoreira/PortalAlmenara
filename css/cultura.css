@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e5e5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .topo-cultura {
+    background-color: #f7b600; 
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo-cultura {
+    font-size: 2.5em;
+    margin: 0;
+  }
+  
+  .portal {
+    color: #444; 
+    font-weight: bold;
+  }
+  
+  .cultura {
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  #conteudo-noticia {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 30px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #conteudo-noticia h2 {
+    color: #f4a100;
+    margin-top: 20px;
+  }
+  
+  #conteudo-noticia p {
+    line-height: 1.6;
+    color: #444;
+  }
+  
+  .imagem-dupla {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .imagem-dupla img {
+    width: 48%; 
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }

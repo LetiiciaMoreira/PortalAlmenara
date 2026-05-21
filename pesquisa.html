@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resultado da Pesquisa - Portal Almenara</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pesquisa.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+
+.aviso {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 30px 15px;
+  text-align: center;
+}
+
+.card-noticia {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.12);
+  margin: 20px 10px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-noticia:hover {
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.15);
+}
+
+.card-noticia img {
+  width: 280px;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.conteudo-card {
+  padding: 20px 25px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.conteudo-card h3 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: #222;
+}
+
+.conteudo-card p {
+  color: #444;
+  line-height: 1.5;
+  margin: 15px 0 25px 0;
+  flex-grow: 1;
+}
+
+.botao-leia {
+  align-self: flex-start;
+  padding: 10px 18px;
+  background-color: #ffca28;
+  color: #222;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.botao-leia:hover {
+  background-color: #e6b022;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.18);
+}
+
+@media (max-width: 720px) {
+  .card-noticia {
+    flex-direction: column;
+  }
+  .card-noticia img {
+    width: 100%;
+    height: 200px;
+  }
+  .conteudo-card {
+    padding: 15px 20px;
+  }
+}
+  </style>
+</head>
+<body>
+  <header class="header-pesquisa">
+    <div class="voltar">
+      <a href="../index.html"><i class="fas fa-arrow-left"></i> Voltar para a página inicial</a>
+    </div>
+    <h1>Resultado da Pesquisa</h1>
+  </header>
+
+  <main class="main-pesquisa">
+    <div class="container-noticias" id="noticias"></div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const termo = params.get('q')?.toLowerCase();
+    const container = document.getElementById('noticias');
+
+    if (!termo) {
+      container.innerHTML = "<p class='aviso'>Por favor, digite um termo para pesquisar.</p>";
+    } else {
+      fetch('../noticias.json')
+        .then(res => res.json())
+        .then(dados => {
+          let resultados = [];
+
+          function filtrarNoticias(lista, campos) {
+            return lista.filter(item => {
+              return campos.some(campo => {
+                if (item[campo]) {
+                  if (typeof item[campo] === 'string') {
+                    return item[campo].toLowerCase().includes(termo);
+                  } else if (Array.isArray(item[campo])) {
+                    return item[campo].some(texto => texto.toLowerCase().includes(termo));
+                  }
+                }
+                return false;
+              });
+            });
+          }
+
+          if (dados.noticias_principais) {
+            resultados = resultados.concat(filtrarNoticias(dados.noticias_principais, ['titulo', 'resumo']));
+          }
+
+          if (dados.postagens_recentes) {
+            resultados = resultados.concat(filtrarNoticias(dados.postagens_recentes, ['resumo']));
+          }
+
+          if (dados.noticiasPorCategoria) {
+            for (const categoria in dados.noticiasPorCategoria) {
+              const noticiasCategoria = dados.noticiasPorCategoria[categoria];
+              noticiasCategoria.forEach(noticia => {
+ 
+                noticia.conteudos.forEach(conteudo => {
+                  if (
+                    (conteudo.titulo && conteudo.titulo.toLowerCase().includes(termo)) ||
+                    (conteudo.conteudo && conteudo.conteudo.toLowerCase().includes(termo))
+                  ) {
+                    resultados.push({
+                      titulo: conteudo.titulo,
+                      resumo: conteudo.conteudo,
+                      imagem: conteudo.imagem || (conteudo.imagens ? conteudo.imagens[0] : null),
+                      link: categoria + ".html?id=" + noticia.id
+                    });
+                  }
+                });
+              });
+            }
+          }
+
+          if (resultados.length === 0) {
+            container.innerHTML = `<p class="aviso">Nenhuma notícia encontrada para: <strong>${termo}</strong></p>`;
+            return;
+          }
+
+          resultados.forEach(noticia => {
+            const card = document.createElement('div');
+            card.classList.add('card-noticia');
+            card.innerHTML = `
+              ${noticia.imagem ? `<img src="${noticia.imagem.src || noticia.imagem}" alt="${noticia.imagem.alt || noticia.titulo}">` : ''}
+              <div class="conteudo-card">
+                <h3>${noticia.titulo}</h3>
+                <p>${noticia.resumo}</p>
+                <a href="${noticia.link}" class="botao-leia" target="_blank" rel="noopener noreferrer">Leia mais</a>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        })
+        .catch(() => {
+          container.innerHTML = "<p class='aviso'>Erro ao carregar as notícias.</p>";
+        });
+    }
+  </script>
+</body>
+</html>

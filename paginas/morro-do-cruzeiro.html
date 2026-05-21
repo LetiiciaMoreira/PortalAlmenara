@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morro do Cruzeiro - Portal Almenara</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #f7b600;
+            color: #ffffff;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        main.conteudo {
+            flex-grow: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        main.conteudo section {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        main.conteudo section p {
+            font-size: 1.15em;
+            margin-bottom: 30px;
+            text-align: justify;
+            color: #495057;
+        }
+
+        #map {
+            height: 550px;
+            width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaflet-marker-icon.morro-cruzeiro-marker {
+            background-color: #FFD700;
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 30px !important;
+            height: 30px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            margin-left: -15px !important;
+            margin-top: -15px !important;
+        }
+
+        .leaflet-control-container .leaflet-control {
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            main.conteudo {
+                padding: 0 15px;
+            }
+
+            main.conteudo section {
+                padding: 25px;
+            }
+
+            #map {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Morro do Cruzeiro</h1>
+    </header>
+
+    <main class="conteudo">
+        <section>
+            <p>
+                O Morro do Cruzeiro é um dos pontos mais altos e emblemáticos de Almenara, oferecendo uma vista panorâmica impressionante da cidade. É também um local tradicional de caminhada, oração e eventos religiosos, especialmente durante a Semana Santa.
+            </p>
+
+            <div id="map"></div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        const centralLatLong = [-16.2079714, -40.6806843]; 
+        
+        const locais = [
+            {
+                "id": 1,
+                "descricao": "Morro do Cruzeiro",
+                "endereco": "Almenara, MG",
+                "favorito": true,
+                "cidade": "Almenara",
+                "latlong": [-16.2079714, -40.6806843], 
+                "url": "#",
+                "cor": "#f7b600"
+            }
+        ];
+
+        let map;
+
+        window.onload = () => {
+            montarMapa(locais);
+        }
+
+        function montarMapa(dadosLocais) {
+            map = L.map('map').setView(centralLatLong, 16);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            L.control.zoom({ position: 'topleft' }).addTo(map);
+
+            dadosLocais.forEach((local) => {
+                const customIcon = L.divIcon({
+                    className: 'morro-cruzeiro-marker',
+                    iconSize: [30, 30]
+                });
+
+                L.marker(local.latlong, { icon: customIcon })
+                    .addTo(map)
+                    .bindPopup(`<h3>${local.descricao}</h3><p>${local.endereco}<br>${local.cidade}</p>`);
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(processarGetCurrentPosition, (error) => {
+                    console.error('Erro ao obter localização do usuário:', error);
+                });
+            } else {
+                console.log('Geolocalização não é suportada por este navegador.');
+            }
+        }
+
+        function processarGetCurrentPosition(posicao) {
+            const lat = posicao.coords.latitude;
+            const lng = posicao.coords.longitude;
+
+            L.marker([lat, lng], { 
+                icon: L.divIcon({
+                    className: 'user-location-marker',
+                    html: '<div style="background-color:#FFD700; border:3px solid white; border-radius:50%; width:20px; height:20px;"></div>',
+                    iconSize: [20, 20]
+                })
+            })
+            .addTo(map)
+            .bindPopup('<h3>Você está aqui!</h3>')
+            .openPopup();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{
+  "carrossel": [
+    {
+      "id": 1,
+      "titulo": "Morro do Cruzeiro",
+      "descricao": "O ponto mais alto de Almenara, com vista panorâmica da cidade.",
+      "imagem": {
+        "src": "img/cruzeiro.jpg",
+        "alt": "Foto do Morro do Cruzeiro em Almenara, com a estátua e vista panorâmica"
+      },
+      "link": "paginas/morro-do-cruzeiro.html"
+    },
+    {
+      "id": 2,
+      "titulo": "Rio Jequitinhonha",
+      "descricao": "A beleza natural e importância histórica de Almenara.",
+      "imagem": {
+        "src": "img/riojequitinhonha.jpeg",
+        "alt": "Foto do Rio Jequitinhonha em Almenara"
+      },
+      "link": "paginas/riojequitinhonha.html"
+    },
+    {
+      "id": 3,
+      "titulo": "Catedral São João Batista",
+      "descricao": "Marco histórico e religioso da cidade.",
+      "imagem": {
+        "src": "img/igreja.jpg",
+        "alt": "Foto da Igreja Matriz de Almenara"
+      },
+      "link": "paginas/igreja.html"
+    }
+  ],
+  "noticias_principais": [
+    {
+      "id": 1,
+      "titulo": "Conheça Almenara",
+      "data": "10 de março de 2025",
+      "imagem": {
+        "src": "img/foto-almenara.png",
+        "alt": "Vista aérea da cidade de Almenara, mostrando o Rio Jequitinhonha e áreas urbanas"
+      },
+      "resumo": "Almenara é um município brasileiro no interior do estado de Minas Gerais...",
+      "link": "https://pt.wikipedia.org/wiki/Almenara"
+    },
+    {
+      "id": 2,
+      "titulo": "Sua História",
+      "data": "10 de março de 2025",
+      "imagem": {
+        "src": "img/Almenara.png",
+        "alt": "Imagem antiga de Almenara mostrando construções históricas"
+      },
+      "resumo": "A origem de Almenara remonta ao ano de 1811...",
+      "link": "https://pt.wikipedia.org/wiki/Almenara"
+    }
+  ],
+  
+  "noticiasPorCategoria": {
+    "politica": [
+      {
+        "id": 1,
+        "data": "10 de março de 2025",
+        "conteudos": [
+          {
+            "titulo": "Eleições: Eduardo Brasileiro, do PT, é eleito prefeito de Almenara no 1º turno",
+            "conteudo": "Eduardo Brasileiro teve 53,25% dos votos dados a todos os candidatos...",
+            "imagem": "img/prefeitura.jpeg"
+          },
+          {
+            "titulo": "Quem é Eduardo Brasileiro?",
+            "conteudo": "Eduardo Brasileiro tem 57 anos, é casado, tem superior completo e declara à Justiça Eleitoral a ocupação de advogado. Ele declarou um patrimônio de R$ 2.039.005,02. O vice-prefeito eleito em Almenara é Reginaldo Chaves, do PSB, que tem 44 anos. Os dois fazem parte da coligação JUNTOS POR ALMENARA, formada pelos partidos PT, PCdoB, PV, PSB e PDT.",
+            "imagem": "img/eduardo.jpeg"
+          }
+        ]
+      }
+    ],
+    "cultura": [
+      {
+        "id": 3,
+        "data": "10 de março de 2025",
+        "conteudos": [
+          {
+            "titulo": "Memorial Cultural Dr. Wilson da Cunha Benevides",
+            "conteudo": "A região vive essencialmente da pecuária, artesanato e terceiros... O Memorial Cultural Dr. Wilson da Cunha Benevides surgiu de uma adaptação feita na antiga caixa d'água, reservatório que abastecia a cidade com a água de um Córrego no alto do Morro que se denomina Córrego dos Cachorros. A obra foi construída na década de 50. Com a vinda da empresa de abastecimento de água para a cidade, a caixa d’água perde sua função principal e fica abandonada por décadas. Durante todo esse tempo sem utilidade, muitas pessoas ligadas à cultura da cidade sonharam em transformá-la em uma casa que abrigasse a cultura. Muitos projetos foram propostos, mas somente em 2012 foi contemplado o projeto do memorial, que tem seu nome em homenagem a um bioquímico da cidade de Rubim, Dr. Wilson da Cunha Benevides, que adotou Almenara como segunda terra e participou ativamente da vida política e social da cidade. O Memorial Cultural é um local que guarda uma parte da Memória da cidade, tem exposição de artesanatos, fotos antigas da cidade e de personalidades, objetos e livros de pesquisa. Atualmente abriga o Departamento Municipal de Cultura.",
+            "imagens": [
+              "img/memorial.jpg",
+              "img/memorial2.jpg"
+            ]
+          }
+        ]
+      }
+    ],
+    "entretenimento": [
+      {
+        "id": 4,
+        "data": "10 de março de 2025",
+        "conteudos": [
+          {
+            "titulo": "A Praia da Saudade - Almenara MG",
+            "conteudo": "Durante muito tempo, Almenara teve a maior praia fluvial do Brasil. A Praia da Saudade, que fica às margens do Rio Jequitinhonha, sempre foi um dos lugares mais marcantes da cidade. Com aquela faixa de areia branca enorme, era o ponto de encontro da galera pra nadar, jogar bola, fazer piquenique ou só relaxar. Ela tem uma vista bonita pro Morro do Cruzeiro e é cercada pela natureza, o que deixava o clima ainda mais especial. Mesmo com o tempo e algumas mudanças, continua sendo um lugar cheio de história e lembranças boas pra quem é da região.\n\nTour pelas áreas da nova orla de Almenara.",
+            "imagem": "img/praia.jpg"
+          }
+        ]
+      }
+    ],
+    "esporte": [
+      {
+        "id": 2,
+        "data": "10 de março de 2025",
+        "conteudos": [
+          {
+            "titulo": "Almenara Campeã do Campeonato Mineiro de Handebol Juvenil Masculino",
+            "conteudo": "A Prefeitura de Almenara tem a grande alegria de anunciar uma conquista histórica para a nossa cidade e para todo o Vale do Jequitinhonha: a equipe de Handebol Juvenil Masculino de Almenara sagrou-se campeã do Campeonato Mineiro de Handebol Juvenil Masculino! Este triunfo inédito ocorreu nos dias 17, 18 e 19 de maio, em Manhuaçu, durante a competição organizada pela Federação Mineira de Handebol. Este marco não apenas coloca Almenara no mapa do esporte estadual, mas também simboliza o resultado de um investimento contínuo no desenvolvimento dos nossos jovens atletas. O desempenho brilhante da equipe foi coroado com reconhecimentos individuais excepcionais.",
+            "imagem": "img/handebol.jpeg"
+          }
+        ]
+      }
+    ]
+  }
+}

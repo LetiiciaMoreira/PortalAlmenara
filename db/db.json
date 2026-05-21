@@ -1,0 +1,25 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Letícia Moreira",
+      "email": "leticia.moreira@email.com",
+      "usuario": "leticiamoreira",
+      "senha": "senha123"
+    },
+    {
+      "id": "2",
+      "nome": "Wilker Ruas",
+      "email": "wilker.ruas@email.com",
+      "usuario": "wilkerruas",
+      "senha": "senha456"
+    },
+    {
+      "id": "ce5c",
+      "nome": "Alessandra Moreira",
+      "email": "alessandra.som@email.com",
+      "usuario": "alessandramoreira",
+      "senha": "analauralet"
+    }
+  ]
+}

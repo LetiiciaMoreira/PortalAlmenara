@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e5e5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .topo-entretenimento {
+    background-color: #f7b600; 
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo-entretenimento {
+    font-size: 2.5em;
+    margin: 0;
+  }
+  
+  .portal {
+    color: #444; 
+    font-weight: bold;
+  }
+  
+  .entretenimento {
+    color: #fff; 
+    font-weight: bold;
+  }
+  
+  #conteudo-noticia {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 30px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #conteudo-noticia h2 {
+    color: #f4a100;
+    margin-top: 20px;
+  }
+  
+  #conteudo-noticia img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 15px 0;
+  }
+  
+  #conteudo-noticia p {
+    line-height: 1.6;
+    color: #444;
+  }
+  
