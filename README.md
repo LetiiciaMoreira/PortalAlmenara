@@ -35,9 +35,9 @@ Durante o desenvolvimento, foram trabalhados conceitos como:
 ## 📸 Imagens do projeto
 
 <p align="center">
-  <img src="imagem/pagina-inicial.png" width="32%" alt="Página Inicial">
-  <img src="imagem/noticias.png" width="32%" alt="Notícias">
-  <img src="imagem/sobre.png" width="32%" alt="Sobre">
+  <img src="./img/pagina-inicial.png" width="32%" alt="Página Inicial">
+  <img src="./img/noticias.png" width="32%" alt="Notícias">
+  <img src="./img/sobre.png" width="32%" alt="Sobre">
 </p>
 
 ## 🎯 Objetivo
